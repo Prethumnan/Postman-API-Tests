@@ -83,6 +83,6 @@ Upon completion, the Postman Runner report will show detailed results confirming
 
 Feel free to reach out with any questions regarding this API testing project or the methodologies used.
 
-* **Name:** [Your Name]
-* **GitHub:** [Link to your GitHub Profile]
-* **Email:** [Your Email Address]
+* **Name:** Prethumnan
+* **GitHub:** https://github.com/Prethumnan
+* **Email:** prethumnan77@gmail.com
