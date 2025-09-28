@@ -1,79 +1,88 @@
-🛍️ AutomationExercise API Testing Project
-This repository contains the Postman Collection and supporting files for testing the AutomationExercise E-commerce API. This project demonstrates API testing skills, including request chaining, data-driven testing, and comprehensive test script assertions.
+# 🛍️ AutomationExercise API Testing Project
 
-⚙️ Prerequisites
-To run these tests locally, you'll need:
+This repository showcases API testing skills using Postman for the AutomationExercise E-commerce API. This project demonstrates key testing concepts, including sequential request execution, data-driven workflows, and comprehensive test script assertions.
 
-Postman Desktop Application: Used to import and execute the collection.
+---
 
-API Backend: This collection is designed to run against the live AutomationExercise API (which is publicly available) or your own locally hosted version of it.
+## ⚙️ Prerequisites
 
-🚀 Getting Started with Postman
-1. Project Files
-Locate and ensure you have the following file(s) from this repository:
+To successfully run these tests, you must have the following installed:
 
-File Name	Type	Purpose
-AutomationExercise API Tests.json	Postman Collection	Contains all 14 API requests and associated test scripts.
-AutomationExercise.postman_environment.json	Postman Environment	Contains variables like the base URL for the API. (If you have one, otherwise omit this section).
+1.  **Postman Desktop Application:** Used to import and execute the collection.
 
-Export to Sheets
-2. Import Files into Postman
-Open the Postman desktop application.
+*(Note: This collection is designed to run against the publically available AutomationExercise API, so no backend setup is typically required.)*
 
-Click the "Import" button in the top left corner.
+---
 
-Select and upload the AutomationExercise API Tests.json file.
+## 🚀 Getting Started with Postman
 
-(If applicable) Import the environment file: AutomationExercise.postman_environment.json.
+### 1. Locate Project Files
 
-3. Select the Environment
-If an Environment file was provided and imported:
+Ensure you have the following file(s) from this repository:
 
-In the top-right corner of Postman, use the environment dropdown menu to select the AutomationExercise environment.
+| File Name | Type | Purpose |
+| :--- | :--- | :--- |
+| **`AutomationExercise API Tests.json`** | Postman Collection | Contains all 14 API requests and associated test scripts. |
+| **`AutomationExercise.postman_environment.json`** | Postman Environment (Optional) | Contains essential variables like the `baseUrl`. |
 
-Go to the Environments tab on the left sidebar to confirm that the baseUrl or url variable is correctly set (e.g., https://automationexercise.com/api).
+### 2. Import Files into Postman
 
-4. Collection Structure Overview
-The requests are logically organized into folders:
+1.  Open the **Postman** desktop application.
+2.  Click the **"Import"** button in the top left corner.
+3.  Select and upload the **`AutomationExercise API Tests.json`** file.
+4.  If an Environment file is provided, import the **`AutomationExercise.postman_environment.json`** as well.
 
-Folder	Description	Key Requests Included
-Products	Requests for fetching and searching product data.	GET All Products List, POST Search Product
-Brands	Requests for fetching brand data.	GET All Brands List
-User	CRUD operations for user accounts, demonstrating request chaining.	POST Create/Register User, PUT Update User, GET User Account Detail
-Auth	Requests for user login and verification.	POST Verify Login with Valid/Invalid Details
+### 3. Configure the Environment (Crucial Step)
 
-Export to Sheets
-🧪 Running the Tests
-To execute all tests and see a comprehensive report:
+If an environment file was imported:
 
-Select the AutomationExercise API Tests collection in the left sidebar.
+1.  In the top-right corner of Postman, use the environment dropdown menu to select the **`AutomationExercise`** environment.
+2.  Go to the **Environments** tab on the left sidebar.
+3.  Confirm that the base URL variable (e.g., `baseUrl` or `url`) is correctly set to the API endpoint (e.g., `https://automationexercise.com/api`).
+    * **Always check for sensitive data:** Ensure any API keys, passwords, or tokens are set in the **Current Value** field and **not** the Initial Value.
 
-Click the "Run" button located on the collection's main tab.
+---
 
-In the Collection Runner window:
+## 🗂️ Collection Structure
 
-Ensure the AutomationExercise environment is selected (if applicable).
+The requests are logically grouped into folders to ensure a clear and maintainable test structure:
 
-Ensure all requests are checked to run.
+| Folder | Description | Key Requests Included (Examples) |
+| :--- | :--- | :--- |
+| **Products** | Requests for fetching all products and performing product searches. | `GET All Products List`, `POST Search Product` |
+| **Brands** | Requests for retrieving brand-related data. | `GET All Brands List` |
+| **User** | **Critical workflow for User CRUD operations.** Requests here often rely on variables set in previous requests. | `POST Create/Register User`, `PUT Update User`, `DELETE User Account` |
+| **Auth** | Requests for authenticating and validating user credentials. | `POST Verify Login with Valid/Invalid Details` |
 
-Click "Run AutomationExercise API Tests".
+---
 
-Expected Outcome
-The Postman Runner should execute all requests. Successful requests will show a "Pass" status for all associated tests, demonstrating:
+## 🧪 Running the Tests
 
-Status Code Validation (e.g., 200 OK, 201 Created).
+To execute the entire test suite and generate a report:
 
-Response Schema Validation (ensuring the JSON structure is correct).
+1.  Select the **`AutomationExercise API Tests`** collection in the left sidebar.
+2.  Click the **"Run"** button located on the collection's main tab.
+3.  In the Collection Runner window:
+    * Ensure the correct **`AutomationExercise`** environment is selected.
+    * Verify that all requests are selected for execution.
+    * **Run Order:** The requests are ordered to execute a complete flow (e.g., Register then Update then Delete), which is critical for successful testing.
+4.  Click **"Run AutomationExercise API Tests"**.
 
-Data Validation (checking specific values returned in the response).
+### Test Assertions Demonstrated
 
-Variable Usage (e.g., extracting a User ID from a registration response and using it for subsequent update/delete requests).
+Upon completion, the Postman Runner report will show detailed results confirming:
 
-📞 Contact
-For any questions about the collection, test design, or my approach to API testing:
+* **Status Code Validation** (e.g., HTTP 200 OK, 201 Created).
+* **Response Body Schema Validation** (ensuring data integrity).
+* **Data Consistency** (checking specific values, such as 'message' or 'responseCode').
+* **Sequential Execution Success** (passing data/tokens between requests via variables).
 
-Name: [Your Name]
+---
 
-GitHub: [Link to your GitHub Profile]
+## 🤝 Contact
 
-Email: [Your Email Address]
+Feel free to reach out with any questions regarding this API testing project or the methodologies used.
+
+* **Name:** [Your Name]
+* **GitHub:** [Link to your GitHub Profile]
+* **Email:** [Your Email Address]
