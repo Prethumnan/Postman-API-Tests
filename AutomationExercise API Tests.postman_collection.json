@@ -1,0 +1,951 @@
+{
+	"info": {
+		"_postman_id": "e853ce0d-051f-4b20-88d0-10b6a97422be",
+		"name": "AutomationExercise API Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23299256"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "API 1: Get All Products List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is 200\", function () {\r",
+									"\r",
+									"    var responseCode = pm.response.json().responseCode;\r",
+									"\r",
+									"    pm.expect(responseCode).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check if products array is not empty\", function () {\r",
+									"\r",
+									"    var products = pm.response.json().products;\r",
+									"\r",
+									"    pm.expect(products.length).to.not.eql(0);\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}productsList",
+							"host": [
+								"{{baseurl}}productsList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "API 2: POST To All Products List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is 405\",function(){\r",
+									"\r",
+									"    var responseCode = pm.response.json().responseCode;\r",
+									"\r",
+									"    pm.expect(responseCode).to.eql(405);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response message\",function(){\r",
+									"\r",
+									"    var responseMessage = pm.response.json().message;\r",
+									"\r",
+									"    pm.expect(responseMessage).to.eql(\"This request method is not supported.\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}productsList",
+							"host": [
+								"{{baseurl}}productsList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "API 5: POST To Search Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is 200\", function () {\r",
+									"\r",
+									"    var responseCode = pm.response.json().responseCode;\r",
+									"\r",
+									"    pm.expect(responseCode).to.eql(200);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"validating products\", function () {\r",
+									"\r",
+									"    var products = pm.response.json().products;\r",
+									"\r",
+									"    pm.expect(products.length).to.not.equal(0);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "search_product",
+									"value": "jean",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}searchProduct",
+							"host": [
+								"{{baseurl}}searchProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "API 6: POST To Search Product without search_product parameter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is 400\", function () {\r",
+									"\r",
+									"    var responseCode = pm.response.json().responseCode;\r",
+									"\r",
+									"    pm.expect(responseCode).to.eql(400); });\r",
+									"\r",
+									"\r",
+									"pm.test(\"validating response message\",function(){\r",
+									"\r",
+									"    var responseMessage = pm.response.json().message;\r",
+									"\r",
+									"    pm.expect(responseMessage).to.eql(\"Bad request, search_product parameter is missing in POST request.\");\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "",
+									"value": "jeans",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}searchProduct",
+							"host": [
+								"{{baseurl}}searchProduct"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Brands",
+			"item": [
+				{
+					"name": "API 3: Get All Brands List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Resonse code is 200\",function(){\r",
+									"\r",
+									"    var responseCode = pm.response.json().responseCode;\r",
+									"    pm.expect(responseCode).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"validating brand list\",function(){\r",
+									"\r",
+									"    var brandlist = pm.response.json().brands;\r",
+									"\r",
+									"    pm.expect(brandlist.length).to.not.eql(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}brandsList",
+							"host": [
+								"{{baseurl}}brandsList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "API 4: PUT To All Brands List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is 405\",function(){\r",
+									"\r",
+									"    var responseCode = pm.response.json().responseCode;\r",
+									"\r",
+									"    pm.expect(responseCode).to.eql(405);    \r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"validating response message\", function () {\r",
+									"\r",
+									"    var responseMessage = pm.response.json().message;\r",
+									"\r",
+									"    pm.expect(responseMessage).to.eql(\"This request method is not supported.\");\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}brandsList",
+							"host": [
+								"{{baseurl}}brandsList"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "API 11: POST To Create/Register User Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is 201\", function () {\r",
+									"\r",
+									"    var responseCode = pm.response.json().responseCode;\r",
+									"\r",
+									"    pm.expect(responseCode).to.eql(201);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"validating message\",function(){\r",
+									"\r",
+									"    var message = pm.response.json().message;\r",
+									"\r",
+									"    pm.expect(message).to.eql(\"User created!\");\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "prethumnan",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "prethumnan99@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Mr",
+									"type": "text"
+								},
+								{
+									"key": "birth_date",
+									"value": "14",
+									"type": "text"
+								},
+								{
+									"key": "birth_month",
+									"value": "06",
+									"type": "text"
+								},
+								{
+									"key": "birth_year",
+									"value": "1999",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "prethumnan",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "J",
+									"type": "text"
+								},
+								{
+									"key": "company",
+									"value": "Google",
+									"type": "text"
+								},
+								{
+									"key": "address1",
+									"value": "50, vanniyar street",
+									"type": "text"
+								},
+								{
+									"key": "address2",
+									"value": "pulavanur, panruti",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "India",
+									"type": "text"
+								},
+								{
+									"key": "zipcode",
+									"value": "607205",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "Tamilnadu",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "cuddalore",
+									"type": "text"
+								},
+								{
+									"key": "mobile_number",
+									"value": "7708276673",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}createAccount",
+							"host": [
+								"{{baseurl}}createAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "API 13: PUT METHOD To Update User Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is 200\",function(){\r",
+									"\r",
+									"    var responseCode = pm.response.json().responseCode;\r",
+									"\r",
+									"    pm.expect(responseCode).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"validating message\",function(){\r",
+									"\r",
+									"    var message = pm.response.json().message;\r",
+									"\r",
+									"    pm.expect(message).to.eql(\"User updated!\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "prethumnan",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "prethumnan99@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Mr",
+									"type": "text"
+								},
+								{
+									"key": "birth_date",
+									"value": "14",
+									"type": "text"
+								},
+								{
+									"key": "birth_month",
+									"value": "06",
+									"type": "text"
+								},
+								{
+									"key": "birth_year",
+									"value": "1999",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "prethumnan",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "J",
+									"type": "text"
+								},
+								{
+									"key": "company",
+									"value": "Google",
+									"type": "text"
+								},
+								{
+									"key": "address1",
+									"value": "50, vanniyar street",
+									"type": "text"
+								},
+								{
+									"key": "address2",
+									"value": "pulavanur, panruti",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "India",
+									"type": "text"
+								},
+								{
+									"key": "zipcode",
+									"value": "607205",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "Tamilnadu",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "cuddalore",
+									"type": "text"
+								},
+								{
+									"key": "mobile_number",
+									"value": "7708276674",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}updateAccount",
+							"host": [
+								"{{baseurl}}updateAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "API 14: GET user account detail by email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is 200\", function (){\r",
+									"\r",
+									"    var responseCode = pm.response.json().responseCode;\r",
+									"\r",
+									"    pm.expect(responseCode).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"validationg user details\",function(){\r",
+									"\r",
+									"    var userDetails = pm.response.json().user;\r",
+									"\r",
+									"    pm.expect(userDetails.length).to.not.eql(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseurl}}getUserDetailByEmail?email=prethumnan99@gmail.com",
+							"host": [
+								"{{baseurl}}getUserDetailByEmail"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "prethumnan99@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "API 12: DELETE METHOD To Delete User Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is 200\",function(){\r",
+									"\r",
+									"    var responseCode = pm.response.json().responseCode;\r",
+									"\r",
+									"    pm.expect(responseCode).to.eql(200);    \r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"validating message\",function(){\r",
+									"\r",
+									"    var message = pm.response.json().message;\r",
+									"\r",
+									"    pm.expect(message).to.eql(\"Account deleted!\");\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "prethumnan99@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}deleteAccount",
+							"host": [
+								"{{baseurl}}deleteAccount"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "API 7: POST To Verify Login with valid details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is 200\",function(){\r",
+									"\r",
+									"    var responseCode = pm.response.json().responseCode;\r",
+									"\r",
+									"    pm.expect(responseCode).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"validating message\",function(){\r",
+									"\r",
+									"    var message = pm.response.json().message;\r",
+									"\r",
+									"    pm.expect(message).to.eql(\"User exists!\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "prethumnan99@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}verifyLogin",
+							"host": [
+								"{{baseurl}}verifyLogin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "API 8: POST To Verify Login without email parameter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is 400\",function(){\r",
+									"\r",
+									"    var responseCode = pm.response.json().responseCode;\r",
+									"\r",
+									"    pm.expect(responseCode).to.eql(400);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"validating message\",function(){\r",
+									"\r",
+									"    var message = pm.response.json().message;\r",
+									"\r",
+									"    pm.expect(message).to.eql(\"Bad request, email or password parameter is missing in POST request.\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}verifyLogin",
+							"host": [
+								"{{baseurl}}verifyLogin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "API 9: DELETE To Verify Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is 405\",function(){\r",
+									"\r",
+									"    var responseCode = pm.response.json().responseCode;\r",
+									"\r",
+									"    pm.expect(responseCode).to.equal(405);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"validating response message\", function (){\r",
+									"\r",
+									"    var responseMessage = pm.response.json().message;\r",
+									"\r",
+									"    pm.expect(responseMessage).to.equal(\"This request method is not supported.\");  \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "prethumnan",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "prethumnan99@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Mr",
+									"type": "text"
+								},
+								{
+									"key": "birth_date",
+									"value": "14",
+									"type": "text"
+								},
+								{
+									"key": "birth_month",
+									"value": "06",
+									"type": "text"
+								},
+								{
+									"key": "birth_year",
+									"value": "1999",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "prethumnan",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "J",
+									"type": "text"
+								},
+								{
+									"key": "company",
+									"value": "Google",
+									"type": "text"
+								},
+								{
+									"key": "address1",
+									"value": "50, vanniyar street",
+									"type": "text"
+								},
+								{
+									"key": "address2",
+									"value": "pulavanur, panruti",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "India",
+									"type": "text"
+								},
+								{
+									"key": "zipcode",
+									"value": "607205",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "Tamilnadu",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "cuddalore",
+									"type": "text"
+								},
+								{
+									"key": "mobile_number",
+									"value": "7708276674",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}verifyLogin",
+							"host": [
+								"{{baseurl}}verifyLogin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "API 10: POST To Verify Login with invalid details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is 404\",function(){\r",
+									"\r",
+									"    var responseCode = pm.response.json().responseCode;\r",
+									"\r",
+									"    pm.expect(responseCode).to.eql(404);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"validating message\",function(){\r",
+									"\r",
+									"    var message = pm.response.json().message;   \r",
+									"\r",
+									"    pm.expect(message).to.eql(\"User not found!\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "prethumnan99@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345679",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}verifyLogin",
+							"host": [
+								"{{baseurl}}verifyLogin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
